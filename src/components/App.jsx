@@ -43,9 +43,7 @@ const App = () => {
           searchQuery: query,
           currentPage,
         });
-        setImages((prevImages) =>
-          query ? resp.data.hits : [...prevImages, ...resp.data.hits]
-        );
+        setImages((prevImages) => [...prevImages, ...resp.data.hits]);
         setShowLoadMoreButton(resp.data.hits.length >= PAGE_SIZE);
         setIsLoading(false);
       } catch (error) {
@@ -56,9 +54,7 @@ const App = () => {
     fetchImagesData();
   }, [query, currentPage]);
 
-  const listItems = images.map((image) => (
-    <ImageGalleryItem key={image.id} image={image} onClick={onImageClick} />
-  ));
+  
   
   return (
     <div
@@ -70,7 +66,7 @@ const App = () => {
       }}
     >
       <Searchbar onSubmit={onSearch} />
-      <ImageGallery>{listItems}</ImageGallery>
+      <ImageGallery images={images} onImageClick={onImageClick}/>
       {showLoadMoreButton && <Button onClick={onLoadMore} />}
       {modalMedia && <Modal image={modalMedia} onClose={onModalClose} />}
       {isLoading && <Loader />}
