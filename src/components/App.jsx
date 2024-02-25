@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { fetchImages, PAGE_SIZE } from 'api/api';
 import { Button } from './Button/Button';
 import { Modal } from './Modal/Modal';
@@ -54,8 +53,6 @@ const App = () => {
     fetchImagesData();
   }, [query, currentPage]);
 
-  
-  
   return (
     <div
       style={{
@@ -66,7 +63,7 @@ const App = () => {
       }}
     >
       <Searchbar onSubmit={onSearch} />
-      <ImageGallery images={images} onImageClick={onImageClick}/>
+      <ImageGallery images={images} onImageClick={onImageClick} />
       {showLoadMoreButton && <Button onClick={onLoadMore} />}
       {modalMedia && <Modal image={modalMedia} onClose={onModalClose} />}
       {isLoading && <Loader />}
